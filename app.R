@@ -60,7 +60,7 @@ pageWithSidebar(
     mainPanel(
         plotOutput('plot1'),
         img(src = "tsneFig.png", height = 200, width = 400),
-        p("The above figure shows a tSNE plot made from single cell gene expression data for around 8000 cells (human cord blood mononuclear cells). Clusters were assigned by kmeans clustering."),
+        p("The above figure shows a tSNE plot made from single cell gene expression data for around 8000 cells (human cord blood mononuclear cells). Clusters were assigned by kmeans clustering of surface marker values for those same cells."),
         p("This interactive figure was made as part of a two day hackathon at the University of Virginia by members of the Biomedical Data Sciences Training Grant. Data was drawn from the following study that generated single cell RNA and surface marker data: https://www.nature.com/nmeth/journal/v14/n9/full/nmeth.4380.html.")
         
     )

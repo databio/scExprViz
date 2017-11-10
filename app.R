@@ -20,8 +20,15 @@ library(shiny)
 # clusterID = clusterID[1:(subsetcolNum-1)]#c(rep(1,5), 2:(subsetrowNum-5))#clusterID = 1:(subsetcolNum-1)
 # cellExpr=cbind(cellExpr, clusterID)
 # save(cellExpr, file="cellExpr.RData")
+
+
+
 load(file = "cellExpr.RData")
 
+# picking a cluster to start on
+# this will be plugged into the UI for default starting gene
+startGeneInd = grep(pattern = "CD8A", x = names(cellExpr)) # numeric index
+startClust = "5" # as a character not numeric value
 
 server <- function(input, output, session) {
     
@@ -49,9 +56,9 @@ pageWithSidebar(
     sidebarPanel(
         p("Pick a gene transcript and cluster to see the distribution of cluster-specific gene expression."),
         selectInput('xcol', 'Transcript of Interest', colnames(cellExpr),
-                    selected=colnames(cellExpr)[[6]], selectize=FALSE,size=3),
+                    selected=colnames(cellExpr)[[startGeneInd]], selectize=FALSE,size=3),
         selectInput('clustNum', 'Cluster ID Number', as.character(sort(unique(cellExpr$clusterID))+1),
-                    selected="1")
+                    selected=startClust)
         # numericInput('clusters', 'Cluster count', 3,
                      # min = 1, max = 9)
         
